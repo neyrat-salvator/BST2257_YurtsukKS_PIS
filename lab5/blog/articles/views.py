@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import Http404
 from django.contrib.auth.decorators import login_required
 from .models import Article
+from django.http import HttpResponse
 
 
 # Create your views here.
@@ -26,21 +27,29 @@ def create_post(request):
         # Объявляем переменные с данными для формы
         title = request.POST.get('title', '').strip()
         text = request.POST.get('text', '').strip()
+        errors = []
+        errors_text = ''
     else:
-        return render(request, 'create_post.html', {})
+        return render(request=request, template_name='create_post.html', context={})
     
     # Проверка обязательных полей
     if not (title and text):
-        return render(request, 'create_post.html', {
-            'form': {'title': title, 'text': text},
-            'errors': 'Пожалуйста, заполните все поля!'
-        })
+        errors.append('Пожалуйста, заполните все поля')
     
     # Проверка существования статьи
     if Article.objects.filter(title=title).exists():
-        return render(request, 'create_post.html', {
+        errors.append('Статья с таким названием существует')
+    
+    # Проверка на количество символов
+    if len(text) < 10:
+        errors.append('Текст должен содержать минимум 10 символов')
+    
+    if len(errors) > 0:
+        for error_index, error_value in enumerate(iterable=errors, start=1):
+            errors[error_index-1] = f'{error_index}: {error_value}'
+        return render(request=request, template_name='create_post.html', context={
             'form': {'title': title, 'text': text},
-            'errors': 'Статья с таким названием существует!'
+            'errors': errors
         })
     
     # Создаем новую статью

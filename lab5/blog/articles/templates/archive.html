@@ -17,8 +17,8 @@
                         <a href="{% url 'get_article' post.id %}">{{ post.title }}</a>
                     </h2>
                     <div class="article-info">
-                        <div class="article-author">{{ post.author.username }}</div>
-                        <div class="article-created-date">{{ post.created_date }}</div>
+                        <div class="article-author">Автор: {{ post.author.username }}</div>
+                        <div class="article-created-date">Дата создания: {{ post.created_date }}</div>
                     </div>
                     <p class="article-text">{{ post.get_excerpt }}</p>
                     <a href="{% url 'get_article' post.id %}" class="read=more">Читать больше</a>

@@ -22,7 +22,7 @@
             "program": "${file}",
             // "program": "main.py",
             "console": "internalConsole",
-            "args": []
+            "args": ["runserver"]
         }
     ]
 }
