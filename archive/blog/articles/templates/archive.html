@@ -1,0 +1,34 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Архив всех статей</title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Архив всех статей</h1>
+    </header>
+
+    <main>
+        {% for post in posts %}
+            <article>
+                <h2>
+                    <a href="{% url 'get_article' post.id %}">{{ post.title }}</a>
+                </h2>
+                
+                <p><strong>Автор:</strong> {{ post.author.username }}</p>
+                <p><strong>Дата:</strong> {{ post.created_date }}</p>
+                
+                <p>{{ post.get_excerpt }}</p>
+                
+                <a href="{% url 'get_article' post.id %}">Читать больше</a>
+            </article>
+        {% empty %}
+            <p>Пока нет ни одной статьи.</p>
+        {% endfor %}
+    </main>
+</body>
+</html>

@@ -1,0 +1,31 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Архив всех статей</title>
+        <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    </head>
+    <body>
+        <div class="header">
+            Коллективный блог
+        </div>
+        <div class="archive">
+            {% for post in posts %}
+                <div class="one-post">
+                    <h2>
+                        <a href="{% url 'get_article' post.id %}">{{ post.title }}</a>
+                    </h2>
+                    <div class="article-info">
+                        <div class="article-author">{{ post.author.username }}</div>
+                        <div class="article-created-date">{{ post.created_date }}</div>
+                    </div>
+                    <p class="article-text">{{ post.get_excerpt }}</p>
+                    <a href="{% url 'get_article' post.id %}" class="read=more">Читать больше</a>
+                </div>
+            {% empty %}
+            <p>Пока нет ни одной статьи.</p>
+            {% endfor %}
+        </div>
+    </body>
+</html>

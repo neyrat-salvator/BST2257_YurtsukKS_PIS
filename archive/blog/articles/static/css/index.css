@@ -1,0 +1,62 @@
+body {
+    background: #1abc9c;
+    font-family: Tahoma, Arial, sans-serif;
+    color: #ffffff;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+h1 {
+    font-size: 36px;
+    font-family: serif;
+}
+h4 {
+    font-size: 14px;
+}
+p {
+    font-size: 22px;
+    margin-bottom: 0;
+}
+table tr td {
+    padding: 5px;
+}
+.header {
+    text-align: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.2);
+    margin-bottom: 30px;
+}
+.logo {
+    width: 150px;
+    height: auto;
+}
+.archive {
+    width: 960px;
+    margin: 0 auto;
+}
+.one-post {
+    background: rgba(0, 0, 0, 0.2);
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 10px;
+    transition: all 0.3s;
+}
+.one-post:hover {
+    background: rgba(0, 0, 0, 0.3);
+    transform: translateX(10px);
+}
+.post-title {
+    margin-bottom: 10px;
+}
+.post-title a {
+    color: #ffffff;
+    text-decoration: none;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 5px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+.read-more:hover {
+    background: rgba(0, 0, 0, 0.5);
+}

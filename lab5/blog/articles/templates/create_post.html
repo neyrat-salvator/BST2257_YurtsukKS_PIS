@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Создать новую статью/Блог</title>
+        <link rel="stylesheet gref="{% static 'css/index.css' %}></link>
+    </head>
+    <body class="create-page">
+        <div class="header">
+            <img src="{% static 'img/logo.svg' %}" alt="Логотип" class="logo">
+            <h1>Коллективный блог</h1>
+        </div>
+        <div class="content">
+            <h1>Написать новую статью</h1>
+            {% if errors %}
+            <div class="error-message">
+                {{ errors }}
+            </div>
+            {% endif %}
+            <form method="POST" class="post-form">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="title">Название статьи</label>
+                    <input type="text"
+                            id="title"
+                            name="title"
+                            placeholder="Введите заголовок статьи"
+                            value="{{ form.title }}"
+                            required>
+                    <div class="field-requirements">Уникальное название до 200 символов</div>
+                </div>
+                <div class="form-group">
+                    <label for"text">Текст статьи</label>
+                    <textarea id="text"
+                                name="text"
+                                placeholder="Напишите текст вашей статьи"
+                                required>{{ form.text }}</textarea>
+                    <div class="field-requirements">Минимум 10 символов</div>
+                </div>
+                <button type="submit" class="submit-bot">Опубликовать статью</button>
+            </form>
+            <div class="black-link">
+                <a href="{% url 'archive' %}">Вернуться к списку статей</a>
+            </div>
+        </div>
+    </body>
+</html>
