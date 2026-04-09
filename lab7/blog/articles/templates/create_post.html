@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Создать новую статью | Блог</title>
+        <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    </head>
+    <body class="create-page-content">
+        <div class="header">
+            <img src="{% static 'img/logo.png' %}" alt="Логотип" class="logo">
+            <h1>Коллективный блог</h1>
+            <div class="user-menu">
+                {% if user.is_authenticated %}
+                    <div class="auth-content">
+                        <span class="user-info">Привет, {{ user.username }}!</span>
+                        <a href="{% url 'logout' %}">Выйти</a>
+                    </div>
+                    <div class="article-buttons">
+                        <a href="{% url 'archive' %}">Все статьи</a>
+                        <a href="{% url 'create_post' %}">Написать статью</a>
+                    </div>
+                {% else %}
+                    <div class="auth-content">
+                        <a href="{% url 'login' %}">Войти</a>
+                        <a href="{% url 'register_view' %}">Регистрация</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        {% if user.is_authenticated %}
+            <div class="create-page">
+                <h1>Написать новую статью</h1>
+                {% if errors %}
+                    <div class="error-message">
+                        {% for error in errors %}
+                            <div>{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <form method="POST" class="post-title">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="title">Название статьи</label>
+                        <input type="text"
+                                id="title"
+                                name="title"
+                                placeholder="Введите заголовок статьи"
+                                value="{{ form.title }}"
+                                required>
+                        <div class="field-requirements">Уникальное название до 200 символов</div>
+                    </div>
+                    <div class="form-group">
+                        <label for"text">Текст статьи</label>
+                        <textarea id="text"
+                                    name="text"
+                                    placeholder="Напишите текст вашей статьи"
+                                    required>{{ form.text }}</textarea>
+                        <div class="field-requirements">Минимум 10 символов</div>
+                    </div>
+                    <button type="submit" class="submit-btn">Опубликовать статью</button>
+                </form>
+                <a href="{% url 'archive' %}" class="global-link">Вернуться к списку статей</a>
+            </div>
+        {% else %}
+        <div class="unauthorized-page">
+            <h1>
+                Неавторизованные пользователи не могут просматривать статьи
+            </h1>
+        </div>
+        {% endif %}
+    </body>
+</html>

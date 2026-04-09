@@ -11,10 +11,10 @@
             <div class="user-menu">
                 {% if user.is_authenticated %}
                     <span class="user-info">Привет, {{ user.username }}!</span>
-                    <a href="{% url 'logout' %}" class="global-link">Выйти</a>
+                    <a href="{% url 'logout' %}">Выйти</a>
                 {% else %}
-                    <a href="{% url 'login' %}" class="global-link">Войти</a>
-                    <a href="{% url 'register_view' %}" class="global-link">Регистрация</a>
+                    <a href="{% url 'login' %}">Войти</a>
+                    <a href="{% url 'register_view' %}">Регистрация</a>
                 {% endif %}
             </div>
         </div>
