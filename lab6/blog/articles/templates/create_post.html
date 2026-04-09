@@ -2,15 +2,24 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Создать новую статью/Блог</title>
+        <title>Создать новую статью | Блог</title>
         <link rel="stylesheet" href="{% static 'css/index.css' %}">
     </head>
     <body class="create-page-content">
-        <div>
+        <div class="header">
             <h1>Коллективный блог</h1>
+            <div class="user-menu">
+                {% if user.is_authenticated %}
+                    <span class="user-info">Привет, {{ user.username }}!</span>
+                    <a href="{% url 'logout' %}" class="global-link">Выйти</a>
+                {% else %}
+                    <a href="{% url 'login' %}" class="global-link">Войти</a>
+                    <a href="{% url 'register_view' %}" class="global-link">Регистрация</a>
+                {% endif %}
+            </div>
         </div>
         <div class="create-page">
-            <h1 class="create-page-header">Написать новую статью</h1>
+            <h1>Написать новую статью</h1>
             {% if errors %}
                 <div class="error-message">
                     {% for error in errors %}
@@ -21,7 +30,7 @@
             <form method="POST" class="post-title">
                 {% csrf_token %}
                 <div class="form-group">
-                    <label for="title" class="require-field">Название статьи</label>
+                    <label for="title">Название статьи</label>
                     <input type="text"
                             id="title"
                             name="title"
@@ -31,7 +40,7 @@
                     <div class="field-requirements">Уникальное название до 200 символов</div>
                 </div>
                 <div class="form-group">
-                    <label for"text" class="require-field">Текст статьи</label>
+                    <label for"text">Текст статьи</label>
                     <textarea id="text"
                                 name="text"
                                 placeholder="Напишите текст вашей статьи"
@@ -40,9 +49,7 @@
                 </div>
                 <button type="submit" class="submit-btn">Опубликовать статью</button>
             </form>
-            <div class="back-link">
-                <a href="{% url 'archive' %}">Вернуться к списку статей</a>
-            </div>
+            <a href="{% url 'archive' %}" class="global-link">Вернуться к списку статей</a>
         </div>
     </body>
 </html>

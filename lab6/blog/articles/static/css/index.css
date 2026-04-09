@@ -1,9 +1,17 @@
 body {
     background: #1abc9c;
     font-family: Tahoma, Arial, sans-serif;
-    color: #ffffff;
+    color: black;
 }
 .create-page-content {
+    align-items: center;
+    text-align: center;
+}
+.user-menu {
+    align-items: center;
+    text-align: center;
+}
+.cart-header {
     align-items: center;
     text-align: center;
 }
@@ -26,9 +34,15 @@ table tr td {
     padding: 5px;
 }
 .header {
+    background: rgba(0, 0, 0, 0.5);
+    color: whitesmoke;
+    width: auto;
     text-align: center;
-    padding: 20px;
+    padding: 8px;
     margin-bottom: 30px;
+}
+.header a {
+    color: white;
 }
 .create-page-header {
     color: black;
@@ -44,41 +58,42 @@ table tr td {
     margin: 0 auto;
 }
 .one-post {
-    background: rgba(0, 0, 0, 0.2);
+    background: white;
     margin: 20px 0;
     padding: 20px;
     border-radius: 10px;
     transition: all 0.3s;
 }
+a {
+    color: black;
+}
+a:visited {
+    color: gray;
+}
+a:hover {
+    color: #00ae8b;
+}
 .one-post:hover {
-    background: rgba(0, 0, 0, 0.3);
+    background: gainsboro;
     transform: translateX(10px);
 }
 .post-title {
     margin-bottom: 10px;
-}
-.post-title a {
-    color: #ffffff;
+    background: white;
+    color: black;
     text-decoration: none;
-    background: rgba(0, 0, 0, 0.3);
     padding: 5px 15px;
     border-radius: 5px;
     font-size: 14px;
 }
-.read-more {
-    text-decoration: none;
-    background: rgba(0, 0, 0, 0.3);
-    padding: 5px 15px;
-    border-radius: 5px;
-    font-size: 14px;
-}
-.read-more:hover {
-    background: rgba(0, 0, 0, 0.5);
+.article-text {
+    width: auto;
+    font-size: 22px;
 }
 .content {
     width: fit-content;
     margin: 0 auto;
-    background: rgba(0, 0, 0, 0.3);
+    background: white;
     padding: 40px;
     border-radius: 15px;
 }
@@ -125,23 +140,37 @@ table tr td {
     text-align: left;
 }
 .submit-btn {
+    width: 100%;
     text-align: center;
+    padding: 20px;
+    background-color: #00ae8b;
+    border: none;
     border-radius: 8px;
-    padding: 20px;
+    color: #ffffff;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
 }
-.back-link {
-    text-align: center;
-    padding: 20px;
+.global-link {
+    text-decoration: none;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 5px 25px;
+    border-radius: 5px;
+    font-size: 14px;
 }
-input[type="text"], textarea {
+.global-link:hover {
+    background: rgba(0, 0, 0, 0.5);
+}
+input,
+textarea {
     width: 100%;
     padding: 10px;
     border: 2px solid #ddd;
-    border-radius: 4px;
+    border-radius: 8px;
     font-size: 16px;
     box-sizing: border-box;
     margin-bottom: 15px;
-    resize: vertical; /* Для textarea */
+    resize: vertical;
 }
 input[type="text"]:focus, textarea:focus {
   border-color: #009688;
@@ -154,7 +183,6 @@ input[type="text"]:focus, textarea:focus {
     font-weight: bold;
     color: #555;
 }
-
 /* Обязательные поля (отмечены *) */
 .require-field:after {
     content: '*';

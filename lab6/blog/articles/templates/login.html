@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Вход | Блог</title>
+        <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    </head>
+    <body class="login-page">
+        <div class="header">
+            <h1>Коллективный блог</h1>
+            <div class="user-menu">
+                {% if user.is_authenticated %}
+                    <span class="user-info">Привет, {{ user.username }}!</span>
+                    <a href="{% url 'logout' %}" class="global-link">Выйти</a>
+                {% else %}
+                    <a href="{% url 'login' %}" class="global-link">Войти</a>
+                    <a href="{% url 'register_view' %}" class="global-link">Регистрация</a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="content">
+            <h1>Вход в систему</h1>
+            {% if errors %}
+                <div class="error-message">
+                    {% for error in errors %}
+                        <div>{{ error }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <form method="POST" class="login-form">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="username" class="require-field">Имя пользователя</label>
+                    <input type="text"
+                            id="username"
+                            name="username"
+                            placeholder="Введите имя пользователя"
+                            value="{{ form.username }}"
+                            required>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="require-field">Пароль</label>
+                    <input type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Введите пароль"
+                            value="{{ form.password }}"
+                            required>
+                </div>
+                <button type="submit" class="submit-btn">Войти</button>
+            </form>
+            <div class="login-link">
+                Нет аккаунта?
+                <a href="{% url 'register_view' %}">Зарегистрируйтесь</a>
+            </div>
+        </div>
+    </body>
+</html>

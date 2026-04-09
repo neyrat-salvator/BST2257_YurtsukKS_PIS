@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Регистрация | Блог</title>
+        <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    </head>
+    <body class="register-page">
+        <div class="header">
+            <h1>Коллективный блог</h1>
+            <div class="user-menu">
+                {% if user.is_authenticated %}
+                    <span class="user-info">Привет, {{ user.username }}!</span>
+                    <a href="{% url 'logout' %}" class="global-link">Выйти</a>
+                {% else %}
+                    <a href="{% url 'login' %}" class="global-link">Войти</a>
+                    <a href="{% url 'register_view' %}" class="global-link">Регистрация</a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="content">
+            <div class="cart-header">
+                <h1>Регистрация</h1>
+            </div>
+            {% if errors %}
+                <div class="error-message">
+                    {% for error in errors %}
+                        <div>{{ error }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <form method="POST" class="register-form">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="username" class="require-field">Имя пользователя</label>
+                    <input type="username"
+                            id="username"
+                            name="username"
+                            placeholder="Введите имя пользователя"
+                            value="{{ form.username }}"
+                            required>
+                    <div class="field-requirements">От 2 до 150 символов. Только латинские буквы, цифры и следующие символы: "-", "_"</div>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="require-field">Email</label>
+                    <input type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Введите адрес электронной почты"
+                            value="{{ form.email }}"
+                            required>
+                    <div class="field-requirements">Введите действующий адрес электронной почты в формате mailid@maildomen.domen</div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="require-field">Пароль</label>
+                    <input type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Введите пароль"
+                            value="{{ form.password }}"
+                            required>
+                    <div class="field-requirements">Минимум 8 символов. Без пробелов</div>
+                </div>
+                <div class="form-group">
+                    <label for="password_confirm" class="require-field">Подтверждение пароля</label>
+                    <input type="password"
+                            id="password_confirm"
+                            name="password_confirm"
+                            placeholder="Повторите пароль"
+                            value="{{ form.password_confirm }}"
+                            required>
+                    <div class="field-requirements">Тот же, что и при предыдущем поле</div>
+                </div>
+                <button type="submit" class="submit-btn">Зарегистрироваться</button>
+            </form>
+            <div class="login-link">
+                Уже есть аккаунт?
+                <a href="{% url 'login' %}">Войдите</a>
+            </div>
+        </div>
+    </body>
+</html>
