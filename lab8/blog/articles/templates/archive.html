@@ -1,0 +1,77 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Архив всех статей</title>
+        <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    </head>
+    <body>
+        <div class="header">
+            <img src="{% static 'img/logo.png' %}" alt="Логотип" class="logo">
+            <h1>Коллективный блог</h1>
+            <div class="user-menu">
+                {% if user.is_authenticated %}
+                    <div class="auth-content">
+                        <span class="user-info">Привет, {{ user.username }}!</span>
+                        <a href="{% url 'logout' %}">Выйти</a>
+                    </div>
+                    <div class="article-buttons">
+                        <a href="{% url 'archive' %}">Все статьи</a>
+                        <a href="{% url 'create_post' %}">Написать статью</a>
+                    </div>
+                {% else %}
+                    <div class="auth-content">
+                        <a href="{% url 'login' %}">Войти</a>
+                        <a href="{% url 'register_view' %}">Регистрация</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        {% if user.is_authenticated %}
+            <div class="archive">
+                {% for post in posts %}
+                    <div class="one-post folded">
+                        <div class="one-post-header">
+                            <div>
+                                <h2>
+                                    <a href="{% url 'get_article' post.id %}">{{ post.title }}</a>
+                                </h2>
+                            </div>
+                            <div>
+                                <button class="fold-button">Развернуть</button>
+                            </div>
+                        </div>
+                        <div class="article-info">
+                            <div class="article-author">Автор: {{ post.author.username }}</div>
+                            <div class="article-created-date">Дата создания: {{ post.created_date }}</div>
+                            <div class="article-text">{{ post.get_excerpt }}</div>
+                            <a href="{% url 'get_article' post.id %}" class="read-more">Читать больше</a>
+                        </div>
+                    </div>
+                {% empty %}
+                <div class="empty-article">
+                    <h1>
+                        У вас нет ни одной статьи
+                    </h1>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+        <div class="unauthorized-page">
+            <h1>
+                Неавторизованные пользователи не могут просматривать статьи
+            </h1>
+        </div>
+        {% endif %}
+
+        <!-- Подключаем оЙгукн (обязательно первым) -->
+        <script src="{% static 'js/jquery.min.js' %}"></script>
+        <!-- Подключаем JavaScript файлы -->
+        <script src="{% static 'js/jquery-effects.js' %}"></script>
+        <script src="{% static 'js/helloworld.js' %}"></script>
+        <script src="{% static 'js/fold-post.js' %}"></script>
+        <!-- В конце body перед закрывающим тегом -->
+        <script src="{% static 'js/demo.js' %}"></script>
+    </body>
+</html>
