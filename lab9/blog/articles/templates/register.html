@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="{% static 'css/article.css' %}">
+</head>
+<body class="auth">
+    <div class="header">
+        <img class="logo" src="{% static 'img/logo.png' %}" alt="Логотип">
+    </div>
+    <div class="content">
+        <h1>Регистрация</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Никнейм" value="{{ request.POST.username|default:'' }}">
+            <input type="email" name="email" placeholder="Email">
+            <input type="password" name="password" placeholder="Пароль">
+            <input type="submit" value="Зарегистрироваться">
+        </form>
+        {% if error %}<p style="color: #ff0000;">{{ error }}</p>{% endif %}
+        <p>Уже есть аккаунт? <a href="{% url 'login' %}">Войти</a></p>
+    </div>
+</body>
+</html>

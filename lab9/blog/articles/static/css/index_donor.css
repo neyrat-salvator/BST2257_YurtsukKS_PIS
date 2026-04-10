@@ -1,0 +1,204 @@
+/*  ОБЩИЕ СТИЛИ  */
+body {
+    background: #092E20;
+    font-family: Tahoma, Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Основной фон и цвет текста для страницы архива */
+body.archive {
+    background: #092E20;
+    color: #ffffff;
+}
+
+/* Шапка (новый дизайн Lab 9) */
+.header {
+    background: #13593e;
+    padding: 20px;
+    position: relative;
+    height: 90px;
+    overflow: hidden;
+}
+
+/* Логотип */
+.logo {
+    width: 200px;
+    float: left;
+}
+
+/* Текстовая часть шапки */
+.header-text-area {
+    float: left;
+    width: 400px;
+    margin-left: 30px;
+    margin-top: 0px;
+}
+
+.service-title {
+    font-size: 28px;
+    margin: 0;
+}
+
+/* Ссылки Регистрация / Вход */
+.register-link {
+    color: #ffffff;
+    text-decoration: none;
+    margin-right: 20px;
+    font-weight: bold;
+}
+
+/* Блок с иконками для параллакса */
+.icons-for-parallax {
+    position: top;
+    right: 40px;
+    top: 100px;
+    height: 100px;
+}
+
+.icons-for-parallax img {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+}
+
+.icon-for-parallax-first {
+    width: 90px;
+    margin-top: 40px;
+    margin-left: 50px;
+    z-index: 3;
+}
+
+.icon-for-parallax-second {
+    width: 80px;
+    margin-top: 20px;
+    margin-left: 80px;
+    z-index: 2;
+}
+
+.icon-for-parallax-third {
+    width: 75px;
+    margin-top: 0px;
+    margin-left: 110px;
+    z-index: 1;
+}
+
+
+/*  КОНТЕНТ СТРАНИЦ  */
+.archive, .article-content {
+    width: 960px;
+    margin: 0 auto;
+    clear: both;
+}
+
+.post-title a, h1 {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.post-title a:hover {
+    text-decoration: underline;
+}
+
+.article-info {
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.article-author {
+    width: 50%;
+    float: left;
+}
+
+.article-created-date {
+    text-align: right;
+}
+
+.article-text {
+    line-height: 1;
+}
+
+.back-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+/*  ФОРМЫ  */
+input[type="text"], textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+textarea { height: 300px; resize: vertical; }
+
+input[type="submit"] {
+    background: #ffffff;
+    color: #13593e;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover { background: #f0f0f0; }
+
+.create .content h1 { text-align: center; }
+
+/* Формы авторизации/регистрации */
+.auth .content { 
+    width: 400px; 
+    margin: 0 auto; 
+    text-align: center; 
+}
+
+.auth input[type="text"], 
+.auth input[type="email"], 
+.auth input[type="password"] {
+    width: 100%; 
+    padding: 12px; 
+    margin: 10px 0; 
+    border: none; 
+    border-radius: 5px;
+}
+
+.auth input[type="submit"] { 
+    background: #ffffff; 
+    color: #092E20; 
+    padding: 12px 40px; 
+}
+
+/*  СВОРАЧИВАНИЕ ПОСТОВ  */
+.one-post.folded .article-author,
+.one-post.folded .article-created-date,
+.one-post.folded .article-text {
+    display: none;
+}
+
+.fold-button {
+    background: #13593e;
+    color: #ffffff;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 1px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.fold-button:hover {
+    background: #196246;
+}
+
+/* Плавность без jQuery */
+.one-post {
+    transition: all 0.3s ease;
+}
